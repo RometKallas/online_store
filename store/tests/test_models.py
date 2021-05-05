@@ -15,3 +15,10 @@ class TestCategoriesModel(TestCase):
         data = self.data1
         #If the "data" fits the Category model then the isinstance will return True
         self.assertTrue(isinstance(data, Category))
+
+    def test_category_model_entry(self):
+        """
+        Test Category model return name
+        """
+        data = self.data1
+        self.assertEqual(str(data), 'sqchair')
