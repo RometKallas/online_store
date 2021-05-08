@@ -1,5 +1,6 @@
 from django.test import TestCase
 
+from django.contrib.auth.models import User
 from store.models import Category, Product
 # Create your tests here.
 
@@ -22,3 +23,20 @@ class TestCategoriesModel(TestCase):
         """
         data = self.data1
         self.assertEqual(str(data), 'sqchair')
+
+
+class TestProductsModel(TestCase):
+    def setUp(self):
+        Category.objects.create(name='sqchair', slug='sqchair')
+        User.objects.create(username='admin')
+        self.data1 = Product.objects.create(category_id=1, title='Children Chair', created_by_id=1,
+                                            slug='children-chair', price='59.00', image='randomimage')
+    
+    def test_products_model_entry(self):
+        """
+        Test product model data insertion/types/field attributes
+        """
+        data = self.data1
+        #is instance as expected
+        self.assertTrue(isinstance(data, Product))
+        self.assertEqual(str(data), 'Children Chair')
