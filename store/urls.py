@@ -5,6 +5,6 @@ from . import views
 
 app_name = 'store'
 
-urlspatters = [
-    path('', views.home, name='home')
+urlpatterns = [
+    path('', views.homepage, name='homepage')
 ]
