@@ -17,3 +17,5 @@ def product_detail(request, slug):
     #based on the slug it is gettign the product we need to return
     product = get_object_or_404(Product, slug=slug, in_stock=True)
     return render(request, 'store/product_page.html', {'product': product})
+
+def category_list(request, category_slug):
