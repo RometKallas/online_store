@@ -10,7 +10,7 @@ def categories(request):
 
 def homepage(request):
     #Running a query against the product table to collect all data
-    products = Product.objects.all()
+    products = Product.objects.filter()
     return render(request, 'store/home.html', {'products': products})
 
 def product_detail(request, slug):
