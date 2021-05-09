@@ -19,3 +19,8 @@ def product_detail(request, slug):
     return render(request, 'store/product_page.html', {'product': product})
 
 def category_list(request, category_slug):
+    #first fetch the category
+    category = get_object_or_404(Category, slug=category_slug)
+    #now we can use the category to fetch products with this category
+    products = Product.objects.filter(category=category)
+    return render(request, 'store/product_category.html', {'category': category, 'products': products})

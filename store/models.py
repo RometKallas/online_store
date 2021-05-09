@@ -8,7 +8,7 @@ class Category(models.Model):
     slug = models.SlugField(max_length=255, unique=True)
 
     def get_absolute_url(self):
-        return reverse('store:product_detail', args=[self.slug])
+        return reverse('store:category_list', args=[self.slug])
 
     #to be able to better reference the data
     def __str__(self):
