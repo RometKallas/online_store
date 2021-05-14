@@ -16,3 +16,15 @@ class Basket():
             basket = self.session['skey'] = {}
         #if the session does exist then use the same basket
         self.basket = basket
+
+    def add(self, product):
+        """
+        Add or update the session with the basket information
+        """
+        product_id = product.id
+
+        if product_id not in self.basket:
+            self.basket[product_id] = {'price': product.price}
+
+        #we save the information into to the session
+        self.session.modified = True
