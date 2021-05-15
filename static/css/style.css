@@ -85,7 +85,7 @@ html, body, p, div{
 
 .basket-qty{
     color: #fff;
-    background: #d42114;
+    background: #3c2ccd;
     border: 2px solid #fff;
     border-radius: 50%;
     text-align: center;
@@ -107,6 +107,6 @@ html, body, p, div{
 }
 
 .basket-btn:hover, .basket-btn:focus, .basket-btn:active, .basket-btn.active{
-    color:#d42114;
+    color:#4669da;
     transition-duration: 0.4s;
     backgrou
