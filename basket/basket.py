@@ -1,5 +1,5 @@
-
-
+from store.models import Product
+from decimal import Decimal
 
 
 class Basket():
@@ -28,6 +28,28 @@ class Basket():
 
         #we save the information into to the session
         self.session.modified = True
+
+    #we have to make the basket iterable
+    def __iter__(self):
+        """
+        Iterate over the products in the session data, using the product id to query and return the products from the database
+        """
+
+        #get the keys stored in the sessions basket
+        product_ids = self.basket.keys()
+        #get only products that are active where the id is from the keys list
+        products = Product.products.filter(id__in=product_ids)
+        #copy the session data
+        basket = self.basket.copy()
+
+        for product in products:
+            basket[str(product.id)]['product'] = product
+
+        for item in basket.values():
+            item['price'] = Decimal(item['price'])
+            items['total_price'] = item['price'] * item['qty']
+            yield item
+
 
     def __len__(self):
         """
