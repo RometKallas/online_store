@@ -47,7 +47,7 @@ class Basket():
 
         for item in basket.values():
             item['price'] = Decimal(item['price'])
-            items['total_price'] = item['price'] * item['qty']
+            item['total_price'] = item['price'] * item['qty']
             yield item
 
 
