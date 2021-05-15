@@ -60,7 +60,15 @@ class Basket():
         """
         return sum(item['qty'] for item in self.basket.values()) 
 
-
+    def update(self, product, qty):
+        """
+        Update the values in the session data
+        """
+        product_id = str(product)
+        if product_id in self.basket:
+            self.basket[product_id]['qty'] = qty
+        self.save()
+    
     #loop through the basket values and add them all up
     def get_total_price(self):
         return sum(Decimal(item['price']) * item['qty'] for item in self.basket.values())
