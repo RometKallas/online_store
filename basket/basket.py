@@ -24,9 +24,11 @@ class Basket():
         """
         Add or update the session with the basket information
         """
-        product_id = product.id
+        product_id = str(product.id)
 
-        if product_id not in self.basket:
+        if product_id in self.basket:
+            self.basket[product_id]['qty'] = qty
+        else:    
             self.basket[product_id] = {'price': str(product.price), 'qty': int(qty)}
 
         #we save the information into to the session
@@ -84,7 +86,6 @@ class Basket():
         if product_id in self.basket:
             del self.basket[product_id]
             #we save the information into to the session
-            print(product_id)
             self.save()
         
     
