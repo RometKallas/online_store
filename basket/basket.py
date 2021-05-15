@@ -17,6 +17,9 @@ class Basket():
         #if the session does exist then use the same basket
         self.basket = basket
 
+    def save(self):
+        self.session.modified = True
+    
     def add(self, product, qty):
         """
         Add or update the session with the basket information
@@ -27,7 +30,7 @@ class Basket():
             self.basket[product_id] = {'price': str(product.price), 'qty': int(qty)}
 
         #we save the information into to the session
-        self.session.modified = True
+        self.save()
 
     #we have to make the basket iterable
     def __iter__(self):
@@ -61,3 +64,18 @@ class Basket():
     #loop through the basket values and add them all up
     def get_total_price(self):
         return sum(Decimal(item['price']) * item['qty'] for item in self.basket.values())
+
+    def delete(self, product):
+        """
+        Delete item from session data
+        """
+        #need to explicitly define that the product is a string because it is stored as a string in database
+        product_id = str(product)
+
+        if product_id in self.basket:
+            del self.basket[product_id]
+            #we save the information into to the session
+        
+        self.save()
+        
+    
