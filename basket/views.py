@@ -8,7 +8,7 @@ from .basket import Basket
 # Create your views here.
 def basket_summary(request):
     basket = Basket(request)
-    return render(request, 'store/basket/basket_summary.html', {'basket': basket})
+    return render(request, 'basket/basket_summary.html', {'basket': basket})
 
 #we need to get the data that the ajax request is collecting from the productid
 def basket_add(request):
