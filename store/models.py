@@ -1,10 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 #Model for Product Category
 class Category(models.Model):
     name = models.CharField(max_length=255, db_index=True)
     slug = models.SlugField(max_length=255, unique=True)
+
+    def get_absolute_url(self):
+        return reverse('store:category_list', args=[self.slug])
 
     #to be able to better reference the data
     def __str__(self):
@@ -27,6 +31,10 @@ class Product(models.Model):
     class Meta:
         ordering = ('-price',)
 
+    def get_absolute_url(self):
+        return reverse('store:product_detail', args=[self.slug])
+    
+    
     def __str__(self):
         return self.title
 

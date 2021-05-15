@@ -1,0 +1,53 @@
+<!-- Load the base into the template-->
+{% extends './base.html' %}
+{% load static %}
+
+{% block title %}Children Furniture | Home{% endblock %}
+
+{% block content %}
+
+<main>
+
+  <section class="py-5 text-center container"
+    style="background-image: url('{% static "img/backgroundimage.png" %}'); background-position: center center; background-repeat: no-repeat;">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Furniture for Creative Children</h1>
+        <p class="lead text-muted">Safety and Sustainability is at its core of EcoFurn furniture</p>
+        <p>
+          <a href="#" class="btn btn-primary my-2">Buy Now</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="pb-3 h5">All Furniture</div>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+        {% for product in products %}
+
+        <div class="col">
+          <div class="card shadow-sm">
+            <img class="card-img-top" alt="Responsive image" src="{{ product.image.url }}">
+            <div class="card-body">
+              <p class="card-text">
+                <a class="text-dark text-decoration-none" href="{{ product.get_absolute_url }}">{{ product.title }}</a>
+              </p>
+
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+{% endblock %}
