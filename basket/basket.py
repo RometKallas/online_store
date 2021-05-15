@@ -71,11 +71,12 @@ class Basket():
         """
         #need to explicitly define that the product is a string because it is stored as a string in database
         product_id = str(product)
+        
 
         if product_id in self.basket:
             del self.basket[product_id]
             #we save the information into to the session
-        
-        self.save()
+            print(product_id)
+            self.save()
         
     
