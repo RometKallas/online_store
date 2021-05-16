@@ -6,6 +6,13 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def dashboard(request):
+    return render(request,
+                  'account/user/dashboard.html')
+
 def account_register(request):
     
 
