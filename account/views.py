@@ -8,6 +8,8 @@ from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 
 from django.contrib.auth.decorators import login_required
 
+from django.http import HttpResponse
+
 @login_required
 def dashboard(request):
     return render(request,
@@ -34,6 +36,7 @@ def account_register(request):
                 'token': account_activation_token.make_token(user),
             })
             user.email_user(subject=subject, message=message)
+            return HttpResponse('registered succesfully and activation sent')
     
     else:
         registerForm = RegistrationForm()
