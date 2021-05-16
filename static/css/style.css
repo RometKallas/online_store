@@ -133,4 +133,6 @@ html, body, p, div{
 .account-form input:focus {
     border-color: #1497ff;
     box-shadow: none;
+    border: 2px solid #ccc;
+    height: calc(2em + .75rem + 2px);
 }

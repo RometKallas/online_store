@@ -12,13 +12,26 @@ from django.template.loader import render_to_string
 from django.http import HttpResponse
 
 from .token import account_activation_token
-from .forms import RegistrationForm
+from .forms import RegistrationForm, UserEditForm
 from .models import UserBase
 
 @login_required
 def dashboard(request):
     return render(request,
                   'account/user/dashboard.html')
+
+@login_required
+def edit_details(request):
+    if request.method == 'POST':
+        user_form = UserEditForm(instance=request.user, data=request.POST)
+
+        if user_form.is_valid():
+            user_form.save()
+    else:
+        user_form = UserEditForm(instance=request.user)
+
+    return render(request,
+                  'account/user/edit_details.html', {'user_form': user_form})
 
 def account_register(request):
     
