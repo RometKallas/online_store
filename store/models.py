@@ -1,5 +1,5 @@
+from django.com import settings
 from django.db import models
-from django.contrib.auth.models import User
 from django.urls import reverse
 
 class ProductManager(models.Manager):
@@ -24,7 +24,7 @@ class Category(models.Model):
 class Product(models.Model):
     #Linking the product to the category table
     category = models.ForeignKey(Category, related_name ='product', on_delete=models.CASCADE) #When the referenced object is deleted, also delete the objects that have references to it
-    created_by = models.ForeignKey(User, related_name='product_creator', on_delete=models.CASCADE)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='product_creator', on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     image = models.ImageField(upload_to='images/')
