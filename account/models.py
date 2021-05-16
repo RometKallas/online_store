@@ -4,6 +4,8 @@ from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager, Permi
 from django_countries.fields import CountryField
 from django.utils.translation import gettext_lazy as _
 
+from django.core.mail import send_mail
+
 # Create your models here.
 
 class CustomAccountManager(BaseUserManager):
@@ -40,8 +42,7 @@ class UserBase(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
     user_name = models.CharField(max_length=150, unique=True)
     first_name = models.CharField(max_length=150, blank=True)
-    about = models.TextField(_(
-        'about'), max_length=500, blank=True)
+    about = models.TextField(_('about'), max_length=500, blank=True)
     
     # Delivery details
     country = CountryField()
@@ -66,4 +67,16 @@ class UserBase(AbstractBaseUser, PermissionsMixin):
         verbose_name = "Accounts"
         verbose_name_plural = "Accounts"
 
+    def email_user(self, subject, message):
+        send_mail(
+            subject,
+            message,
+            'customersupport@ecofurn.com',
+            [self.email],
+            fail_silently=False,
+        )
+    
+    def __str__(self):
+        return self.user_name
+        
 
