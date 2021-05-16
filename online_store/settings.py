@@ -136,3 +136,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 AUTH_USER_MODEL = 'account.UserBase'
 LOGIN_REDIRECT_URL = '/account/dashboard'
 LOGIN_URL = '/account/login'
+
+#Email Setting
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
