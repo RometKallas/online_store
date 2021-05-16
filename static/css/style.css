@@ -109,4 +109,14 @@ html, body, p, div{
 .basket-btn:hover, .basket-btn:focus, .basket-btn:active, .basket-btn.active{
     color:#4669da;
     transition-duration: 0.4s;
-    backgrou
+    background-color: #fff;
+}
+
+.account-form input {
+        border: 2px solid #ccc;
+        height: calc(2em + .75rem + 2px);
+}
+
+.account-form input:focus {
+        border-color: #1497ff;
+        box-shadow: none;
